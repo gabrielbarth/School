@@ -6,7 +6,7 @@ namespace School.Domain.Models
 {
     public class StudentSubject
     {
-        public int StudentId { get; set; }
+        public int StudentID { get; set; }
 
         public Student Student { get; set; }
 

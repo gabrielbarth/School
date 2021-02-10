@@ -6,11 +6,11 @@ namespace School.Domain.Models
 { 
     public class Subject
     {
-        public int Id { get; set; }
+        public int SubjectID { get; set; }
 
         public string Name { get; set; }
 
-        public int TeacherId { get; set; }
+        public int TeacherID { get; set; }
 
         public Teacher Teacher { get; set; }
 
@@ -18,11 +18,11 @@ namespace School.Domain.Models
 
         public Subject() {}
 
-        public Subject(int id, string name, int teacherId)
+        public Subject(int id, string name, int teacherID)
         {
-            Id = id;
+            SubjectID = id;
             Name = name;
-            TeacherId = teacherId;
+            TeacherID = teacherID;
         }
     }
 }

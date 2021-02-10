@@ -6,7 +6,7 @@ namespace School.Domain.Models
 {
     public class Student
     {
-        public int Id { get; set; }
+        public int StudentID { get; set; }
 
         public string Name { get; set; }
 
@@ -16,7 +16,7 @@ namespace School.Domain.Models
 
         public Student(int id, string name, string lastName, string phone)
         {
-            Id = id;
+            StudentID = id;
             Name = name;
             LastName = lastName;
             Phone = phone;
