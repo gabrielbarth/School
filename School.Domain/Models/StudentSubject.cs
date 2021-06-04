@@ -10,7 +10,7 @@ namespace School.Domain.Models
 
         public Student Student { get; set; }
 
-        public int SubjectId { get; set; }
+        public int SubjectID { get; set; }
 
         public Subject Subject { get; set; }
 
@@ -19,8 +19,8 @@ namespace School.Domain.Models
 
         public StudentSubject(int studentId, int subjectId)
         {
-            StudentId = studentId;
-            SubjectId = subjectId;
+            StudentID = studentId;
+            SubjectID = subjectId;
         }
     }
 }

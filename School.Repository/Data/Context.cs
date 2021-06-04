@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System.IO;
 using System.Data;
-
 using School.Domain.Models;
 using System.Collections.Generic;
 
@@ -26,7 +25,7 @@ namespace School.Repository.Data
         {
             // criação de um relacionamento muitos para muitos
             builder.Entity<StudentSubject>()
-                .HasKey(ss => new { ss.StudentId, ss.SubjectId });
+                .HasKey(ss => new { ss.StudentID, ss.SubjectID });
 
             builder.Entity<Teacher>()
                 .HasData(new List<Teacher>(){
@@ -59,35 +58,35 @@ namespace School.Repository.Data
 
             builder.Entity<StudentSubject>()
                 .HasData(new List<StudentSubject>() {
-                    new StudentSubject() {StudentId = 1, SubjectId = 2 },
-                    new StudentSubject() {StudentId = 1, SubjectId = 4 },
-                    new StudentSubject() {StudentId = 1, SubjectId = 5 },
-                    new StudentSubject() {StudentId = 2, SubjectId = 1 },
-                    new StudentSubject() {StudentId = 2, SubjectId = 2 },
-                    new StudentSubject() {StudentId = 2, SubjectId = 5 },
-                    new StudentSubject() {StudentId = 3, SubjectId = 1 },
-                    new StudentSubject() {StudentId = 3, SubjectId = 2 },
-                    new StudentSubject() {StudentId = 3, SubjectId = 3 },
-                    new StudentSubject() {StudentId = 4, SubjectId = 1 },
-                    new StudentSubject() {StudentId = 4, SubjectId = 4 },
-                    new StudentSubject() {StudentId = 4, SubjectId = 5 },
-                    new StudentSubject() {StudentId = 5, SubjectId = 4 },
-                    new StudentSubject() {StudentId = 5, SubjectId = 5 },
-                    new StudentSubject() {StudentId = 6, SubjectId = 1 },
-                    new StudentSubject() {StudentId = 6, SubjectId = 2 },
-                    new StudentSubject() {StudentId = 6, SubjectId = 3 },
-                    new StudentSubject() {StudentId = 6, SubjectId = 4 },
-                    new StudentSubject() {StudentId = 7, SubjectId = 1 },
-                    new StudentSubject() {StudentId = 7, SubjectId = 2 },
-                    new StudentSubject() {StudentId = 7, SubjectId = 3 },
-                    new StudentSubject() {StudentId = 7, SubjectId = 4 },
-                    new StudentSubject() {StudentId = 7, SubjectId = 5 }
+                    new StudentSubject() {StudentID = 1, SubjectID = 2 },
+                    new StudentSubject() {StudentID = 1, SubjectID = 4 },
+                    new StudentSubject() {StudentID = 1, SubjectID = 5 },
+                    new StudentSubject() {StudentID = 2, SubjectID = 1 },
+                    new StudentSubject() {StudentID = 2, SubjectID = 2 },
+                    new StudentSubject() {StudentID = 2, SubjectID = 5 },
+                    new StudentSubject() {StudentID = 3, SubjectID = 1 },
+                    new StudentSubject() {StudentID = 3, SubjectID = 2 },
+                    new StudentSubject() {StudentID = 3, SubjectID = 3 },
+                    new StudentSubject() {StudentID = 4, SubjectID = 1 },
+                    new StudentSubject() {StudentID = 4, SubjectID = 4 },
+                    new StudentSubject() {StudentID = 4, SubjectID = 5 },
+                    new StudentSubject() {StudentID = 5, SubjectID = 4 },
+                    new StudentSubject() {StudentID = 5, SubjectID = 5 },
+                    new StudentSubject() {StudentID = 6, SubjectID = 1 },
+                    new StudentSubject() {StudentID = 6, SubjectID = 2 },
+                    new StudentSubject() {StudentID = 6, SubjectID = 3 },
+                    new StudentSubject() {StudentID = 6, SubjectID = 4 },
+                    new StudentSubject() {StudentID = 7, SubjectID = 1 },
+                    new StudentSubject() {StudentID = 7, SubjectID = 2 },
+                    new StudentSubject() {StudentID = 7, SubjectID = 3 },
+                    new StudentSubject() {StudentID = 7, SubjectID = 4 },
+                    new StudentSubject() {StudentID = 7, SubjectID = 5 }
                 });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Password=SQL*&123sql;Persist Security Info=True;User ID=SA;Initial Catalog=school;Data Source=localhost,1433");
+            optionsBuilder.UseSqlServer("Password=p@ssw0rd;Persist Security Info=True;User ID=SA;Initial Catalog=school;Data Source=localhost,1433");
         }
 
     }

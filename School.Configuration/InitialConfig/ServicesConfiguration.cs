@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-
 using School.Repository.Data;
 
 namespace School.Configuration.InitialConfig
@@ -19,7 +15,10 @@ namespace School.Configuration.InitialConfig
             services.AddDbContext<Context>(
                 context => context.UseSqlServer(config.GetConnectionString("Default"))
             );
+            services.AddScoped<IRepository, Repository.Data.Repository>();
 
+            services.AddControllers().AddNewtonsoftJson(
+                option => option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         public static void SetConfigurations(this IApplicationBuilder app, IWebHostEnvironment env)

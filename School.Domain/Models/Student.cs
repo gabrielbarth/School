@@ -14,6 +14,8 @@ namespace School.Domain.Models
 
         public string Phone { get; set; }
 
+        public IEnumerable<StudentSubject> StudentSubjects { get; set; }
+
         public Student(int id, string name, string lastName, string phone)
         {
             StudentID = id;

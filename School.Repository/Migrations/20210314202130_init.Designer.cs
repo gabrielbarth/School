@@ -9,23 +9,23 @@ using School.Repository.Data;
 namespace School.Repository.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201207040516_init")]
+    [Migration("20210314202130_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("School.Domain.Models.Student", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("StudentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -36,56 +36,56 @@ namespace School.Repository.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("StudentID");
 
                     b.ToTable("Students");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            StudentID = 1,
                             LastName = "Kent",
                             Name = "Marta",
                             Phone = "33225555"
                         },
                         new
                         {
-                            Id = 2,
+                            StudentID = 2,
                             LastName = "Isabela",
                             Name = "Paula",
                             Phone = "3354288"
                         },
                         new
                         {
-                            Id = 3,
+                            StudentID = 3,
                             LastName = "Antonia",
                             Name = "Laura",
                             Phone = "55668899"
                         },
                         new
                         {
-                            Id = 4,
+                            StudentID = 4,
                             LastName = "Maria",
                             Name = "Luiza",
                             Phone = "6565659"
                         },
                         new
                         {
-                            Id = 5,
+                            StudentID = 5,
                             LastName = "Machado",
                             Name = "Lucas",
                             Phone = "565685415"
                         },
                         new
                         {
-                            Id = 6,
+                            StudentID = 6,
                             LastName = "Alvares",
                             Name = "Pedro",
                             Phone = "456454545"
                         },
                         new
                         {
-                            Id = 7,
+                            StudentID = 7,
                             LastName = "José",
                             Name = "Paulo",
                             Phone = "9874512"
@@ -94,226 +94,226 @@ namespace School.Repository.Migrations
 
             modelBuilder.Entity("School.Domain.Models.StudentSubject", b =>
                 {
-                    b.Property<int>("StudentId")
+                    b.Property<int>("StudentID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubjectId")
+                    b.Property<int>("SubjectID")
                         .HasColumnType("int");
 
-                    b.HasKey("StudentId", "SubjectId");
+                    b.HasKey("StudentID", "SubjectID");
 
-                    b.HasIndex("SubjectId");
+                    b.HasIndex("SubjectID");
 
                     b.ToTable("StudentSubjects");
 
                     b.HasData(
                         new
                         {
-                            StudentId = 1,
-                            SubjectId = 2
+                            StudentID = 1,
+                            SubjectID = 2
                         },
                         new
                         {
-                            StudentId = 1,
-                            SubjectId = 4
+                            StudentID = 1,
+                            SubjectID = 4
                         },
                         new
                         {
-                            StudentId = 1,
-                            SubjectId = 5
+                            StudentID = 1,
+                            SubjectID = 5
                         },
                         new
                         {
-                            StudentId = 2,
-                            SubjectId = 1
+                            StudentID = 2,
+                            SubjectID = 1
                         },
                         new
                         {
-                            StudentId = 2,
-                            SubjectId = 2
+                            StudentID = 2,
+                            SubjectID = 2
                         },
                         new
                         {
-                            StudentId = 2,
-                            SubjectId = 5
+                            StudentID = 2,
+                            SubjectID = 5
                         },
                         new
                         {
-                            StudentId = 3,
-                            SubjectId = 1
+                            StudentID = 3,
+                            SubjectID = 1
                         },
                         new
                         {
-                            StudentId = 3,
-                            SubjectId = 2
+                            StudentID = 3,
+                            SubjectID = 2
                         },
                         new
                         {
-                            StudentId = 3,
-                            SubjectId = 3
+                            StudentID = 3,
+                            SubjectID = 3
                         },
                         new
                         {
-                            StudentId = 4,
-                            SubjectId = 1
+                            StudentID = 4,
+                            SubjectID = 1
                         },
                         new
                         {
-                            StudentId = 4,
-                            SubjectId = 4
+                            StudentID = 4,
+                            SubjectID = 4
                         },
                         new
                         {
-                            StudentId = 4,
-                            SubjectId = 5
+                            StudentID = 4,
+                            SubjectID = 5
                         },
                         new
                         {
-                            StudentId = 5,
-                            SubjectId = 4
+                            StudentID = 5,
+                            SubjectID = 4
                         },
                         new
                         {
-                            StudentId = 5,
-                            SubjectId = 5
+                            StudentID = 5,
+                            SubjectID = 5
                         },
                         new
                         {
-                            StudentId = 6,
-                            SubjectId = 1
+                            StudentID = 6,
+                            SubjectID = 1
                         },
                         new
                         {
-                            StudentId = 6,
-                            SubjectId = 2
+                            StudentID = 6,
+                            SubjectID = 2
                         },
                         new
                         {
-                            StudentId = 6,
-                            SubjectId = 3
+                            StudentID = 6,
+                            SubjectID = 3
                         },
                         new
                         {
-                            StudentId = 6,
-                            SubjectId = 4
+                            StudentID = 6,
+                            SubjectID = 4
                         },
                         new
                         {
-                            StudentId = 7,
-                            SubjectId = 1
+                            StudentID = 7,
+                            SubjectID = 1
                         },
                         new
                         {
-                            StudentId = 7,
-                            SubjectId = 2
+                            StudentID = 7,
+                            SubjectID = 2
                         },
                         new
                         {
-                            StudentId = 7,
-                            SubjectId = 3
+                            StudentID = 7,
+                            SubjectID = 3
                         },
                         new
                         {
-                            StudentId = 7,
-                            SubjectId = 4
+                            StudentID = 7,
+                            SubjectID = 4
                         },
                         new
                         {
-                            StudentId = 7,
-                            SubjectId = 5
+                            StudentID = 7,
+                            SubjectID = 5
                         });
                 });
 
             modelBuilder.Entity("School.Domain.Models.Subject", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SubjectID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TeacherId")
+                    b.Property<int>("TeacherID")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("SubjectID");
 
-                    b.HasIndex("TeacherId");
+                    b.HasIndex("TeacherID");
 
                     b.ToTable("Subjects");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            SubjectID = 1,
                             Name = "Matemática",
-                            TeacherId = 1
+                            TeacherID = 1
                         },
                         new
                         {
-                            Id = 2,
+                            SubjectID = 2,
                             Name = "Física",
-                            TeacherId = 2
+                            TeacherID = 2
                         },
                         new
                         {
-                            Id = 3,
+                            SubjectID = 3,
                             Name = "Português",
-                            TeacherId = 3
+                            TeacherID = 3
                         },
                         new
                         {
-                            Id = 4,
+                            SubjectID = 4,
                             Name = "Inglês",
-                            TeacherId = 4
+                            TeacherID = 4
                         },
                         new
                         {
-                            Id = 5,
+                            SubjectID = 5,
                             Name = "Programação",
-                            TeacherId = 5
+                            TeacherID = 5
                         });
                 });
 
             modelBuilder.Entity("School.Domain.Models.Teacher", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TeacherID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("TeacherID");
 
                     b.ToTable("Teachers");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            TeacherID = 1,
                             Name = "Lauro"
                         },
                         new
                         {
-                            Id = 2,
+                            TeacherID = 2,
                             Name = "Roberto"
                         },
                         new
                         {
-                            Id = 3,
+                            TeacherID = 3,
                             Name = "Ronaldo"
                         },
                         new
                         {
-                            Id = 4,
+                            TeacherID = 4,
                             Name = "Rodrigo"
                         },
                         new
                         {
-                            Id = 5,
+                            TeacherID = 5,
                             Name = "Alexandre"
                         });
                 });
@@ -322,13 +322,13 @@ namespace School.Repository.Migrations
                 {
                     b.HasOne("School.Domain.Models.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("School.Domain.Models.Subject", "Subject")
                         .WithMany("StudentsSubject")
-                        .HasForeignKey("SubjectId")
+                        .HasForeignKey("SubjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -341,7 +341,7 @@ namespace School.Repository.Migrations
                 {
                     b.HasOne("School.Domain.Models.Teacher", "Teacher")
                         .WithMany("Subjects")
-                        .HasForeignKey("TeacherId")
+                        .HasForeignKey("TeacherID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

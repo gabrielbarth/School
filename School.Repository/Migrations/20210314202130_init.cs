@@ -10,7 +10,7 @@ namespace School.Repository.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    StudentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -18,39 +18,39 @@ namespace School.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.StudentID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    TeacherID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teachers", x => x.Id);
+                    table.PrimaryKey("PK_Teachers", x => x.TeacherID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Subjects",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    SubjectID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherId = table.Column<int>(type: "int", nullable: false)
+                    TeacherID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Subjects", x => x.Id);
+                    table.PrimaryKey("PK_Subjects", x => x.SubjectID);
                     table.ForeignKey(
-                        name: "FK_Subjects_Teachers_TeacherId",
-                        column: x => x.TeacherId,
+                        name: "FK_Subjects_Teachers_TeacherID",
+                        column: x => x.TeacherID,
                         principalTable: "Teachers",
-                        principalColumn: "Id",
+                        principalColumn: "TeacherID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -58,29 +58,29 @@ namespace School.Repository.Migrations
                 name: "StudentSubjects",
                 columns: table => new
                 {
-                    StudentId = table.Column<int>(type: "int", nullable: false),
-                    SubjectId = table.Column<int>(type: "int", nullable: false)
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    SubjectID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentSubjects", x => new { x.StudentId, x.SubjectId });
+                    table.PrimaryKey("PK_StudentSubjects", x => new { x.StudentID, x.SubjectID });
                     table.ForeignKey(
-                        name: "FK_StudentSubjects_Students_StudentId",
-                        column: x => x.StudentId,
+                        name: "FK_StudentSubjects_Students_StudentID",
+                        column: x => x.StudentID,
                         principalTable: "Students",
-                        principalColumn: "Id",
+                        principalColumn: "StudentID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentSubjects_Subjects_SubjectId",
-                        column: x => x.SubjectId,
+                        name: "FK_StudentSubjects_Subjects_SubjectID",
+                        column: x => x.SubjectID,
                         principalTable: "Subjects",
-                        principalColumn: "Id",
+                        principalColumn: "SubjectID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Students",
-                columns: new[] { "Id", "LastName", "Name", "Phone" },
+                columns: new[] { "StudentID", "LastName", "Name", "Phone" },
                 values: new object[,]
                 {
                     { 1, "Kent", "Marta", "33225555" },
@@ -94,7 +94,7 @@ namespace School.Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "Teachers",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "TeacherID", "Name" },
                 values: new object[,]
                 {
                     { 1, "Lauro" },
@@ -106,7 +106,7 @@ namespace School.Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "Subjects",
-                columns: new[] { "Id", "Name", "TeacherId" },
+                columns: new[] { "SubjectID", "Name", "TeacherID" },
                 values: new object[,]
                 {
                     { 1, "Matemática", 1 },
@@ -118,7 +118,7 @@ namespace School.Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "StudentSubjects",
-                columns: new[] { "StudentId", "SubjectId" },
+                columns: new[] { "StudentID", "SubjectID" },
                 values: new object[,]
                 {
                     { 2, 1 },
@@ -147,14 +147,14 @@ namespace School.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentSubjects_SubjectId",
+                name: "IX_StudentSubjects_SubjectID",
                 table: "StudentSubjects",
-                column: "SubjectId");
+                column: "SubjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Subjects_TeacherId",
+                name: "IX_Subjects_TeacherID",
                 table: "Subjects",
-                column: "TeacherId");
+                column: "TeacherID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
