@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace School.Domain.Models
+namespace School.Infra.DTOs
 {
-    public class Teacher
+    public class TeacherRegisterDto
     {
         public int TeacherID { get; set; }
         public int Registry { get; set; }
@@ -13,14 +14,5 @@ namespace School.Domain.Models
         public DateTime EnrolmentDate { get; set; } = DateTime.Now;
         public DateTime? TerminationDate { get; set; } = null;
         public bool Active { get; set; } = true;
-        public IEnumerable<Subject> Subjects { get; set; }
-        public Teacher() { }
-        public Teacher(int id, int registry, string name, string lastName)
-        {
-            TeacherID = id;
-            Registry = registry;
-            Name = name;
-            LastName = lastName;
-        }
     }
 }

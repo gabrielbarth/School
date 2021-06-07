@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using School.Domain.Models;
+using School.Infra.DTOs;
 using School.Repository.Data;
 
 namespace School.API.Controllers
@@ -15,18 +17,19 @@ namespace School.API.Controllers
     public class StudentController : ControllerBase
     {
         private readonly IRepository _repository;
+        private readonly IMapper _mapper;
 
-
-        public StudentController(IRepository repository)
+        public StudentController(IRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _repository.GetAllStudents(true);
-            return Ok(result);
+            var students = _repository.GetAllStudents(true).ToList();
+            return Ok(_mapper.Map<IEnumerable<StudentDto>>(students));
         }
 
         [HttpGet("{id}")]
@@ -35,28 +38,34 @@ namespace School.API.Controllers
             var student = _repository.GetStudentById(id, false);
             if (student == null) return BadRequest("Aluno não encontrado.");
 
-            return Ok(student);
+            var studentDto = _mapper.Map<StudentDto>(student);
+
+            return Ok(studentDto);
         }
 
         [HttpPost]
-        public IActionResult Post(Student student)
+        public IActionResult Post(StudentRegisterDto studentModel)
         {
+            var student = _mapper.Map<Student>(studentModel);
+
             _repository.Create(student);
             if (_repository.SaveChanges())
-                return Ok(student);
+                return Created($"/api/student/{studentModel.StudentID}", _mapper.Map<StudentDto>(student));
 
             return BadRequest("Aluno não cadastrado.");
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Student Student)
+        public IActionResult Put(int id, StudentRegisterDto studentModel)
         {
             var student = _repository.GetStudentById(id);
             if (student == null) return BadRequest("Aluno não encontrado.");
 
+            _mapper.Map(studentModel, student);
+
             _repository.Update(student);
             if (_repository.SaveChanges())
-                return Ok(student);
+                return Created($"/api/student/{studentModel.StudentID}", _mapper.Map<StudentDto>(student));
 
             return BadRequest("Aluno não atualizado.");
         }

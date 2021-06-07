@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -13,6 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\School.Configuration\School.Configuration.csproj" />
+    <ProjectReference Include="..\School.Domain\School.Domain.csproj" />
+    <ProjectReference Include="..\School.Infra\School.Infra.csproj" />
   </ItemGroup>
 
 

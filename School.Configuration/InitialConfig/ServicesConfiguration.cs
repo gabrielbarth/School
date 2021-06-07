@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using School.Repository.Data;
+using AutoMapper;
+using System;
+using School.Application.Helpers;
 
 namespace School.Configuration.InitialConfig
 {
@@ -15,10 +18,15 @@ namespace School.Configuration.InitialConfig
             services.AddDbContext<Context>(
                 context => context.UseSqlServer(config.GetConnectionString("Default"))
             );
-            services.AddScoped<IRepository, Repository.Data.Repository>();
-
+            
             services.AddControllers().AddNewtonsoftJson(
                 option => option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddAutoMapper(typeof(SchoolProfile));
+            
+            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IRepository, Repository.Data.Repository>();
         }
 
         public static void SetConfigurations(this IApplicationBuilder app, IWebHostEnvironment env)

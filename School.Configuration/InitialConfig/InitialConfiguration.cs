@@ -10,7 +10,7 @@ namespace School.Configuration.InitialConfig
     public static class InitialConfiguration
     {
         public static IConfigurationRoot SetEnviromentVariables(this IWebHostEnvironment env)
-        {
+        { 
             var configBuilder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true)
