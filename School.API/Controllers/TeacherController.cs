@@ -12,8 +12,9 @@ using School.Repository.Data;
 
 namespace School.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class TeacherController : ControllerBase
     {
         private readonly IRepository _repository;

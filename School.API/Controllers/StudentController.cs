@@ -12,19 +12,33 @@ using School.Repository.Data;
 
 namespace School.API.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// 
+    /// </summary>
+    
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class StudentController : ControllerBase
     {
         private readonly IRepository _repository;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="mapper"></param>
         public StudentController(IRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Método responsável por retornar todos os alunos
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -32,6 +46,11 @@ namespace School.API.Controllers
             return Ok(_mapper.Map<IEnumerable<StudentDto>>(students));
         }
 
+        /// <summary>
+        /// Método responsável por retornar um único alunoDTO através do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -43,6 +62,11 @@ namespace School.API.Controllers
             return Ok(studentDto);
         }
 
+        /// <summary>
+        /// Método responsável por criar o registro de um aluno
+        /// </summary>
+        /// <param name="studentModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(StudentRegisterDto studentModel)
         {

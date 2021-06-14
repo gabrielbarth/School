@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>School.API</name>
+    </assembly>
+    <members>
+        <member name="T:School.API.Controllers.StudentController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:School.API.Controllers.StudentController.#ctor(School.Repository.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="repository"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:School.API.Controllers.StudentController.Get">
+            <summary>
+            Método responsável por retornar todos os alunos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.StudentController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar um único alunoDTO através do ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:School.API.Controllers.StudentController.Post(School.Infra.DTOs.StudentRegisterDto)">
+            <summary>
+            Método responsável por criar o registro de um aluno
+            </summary>
+            <param name="studentModel"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
