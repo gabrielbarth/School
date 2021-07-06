@@ -16,7 +16,7 @@
             <param name="repository"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:School.API.Controllers.StudentController.Get">
+        <member name="M:School.API.Controllers.StudentController.Get(School.Application.Helpers.PageParams)">
             <summary>
             Método responsável por retornar todos os alunos
             </summary>

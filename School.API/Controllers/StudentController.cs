@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using School.Application.Helpers;
 using School.Domain.Models;
 using School.Infra.DTOs;
 using School.Repository.Data;
@@ -40,10 +41,18 @@ namespace School.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
         {
-            var students = _repository.GetAllStudents(true).ToList();
-            return Ok(_mapper.Map<IEnumerable<StudentDto>>(students));
+            var students = await _repository.GetAllStudentsAsync(pageParams, true);
+
+            var studentsResult = _mapper.Map<IEnumerable<StudentDto>>(students);
+
+            Response.AddPagination(students.CurrentPage, 
+                                    students.PageSize, 
+                                    students.TotalCount, 
+                                    students.TotalPages);
+
+            return Ok(studentsResult);
         }
 
         /// <summary>

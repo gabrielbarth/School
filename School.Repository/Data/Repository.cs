@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using School.Application.Helpers;
 using School.Domain.Models;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace School.Repository.Data
 {
@@ -45,6 +48,35 @@ namespace School.Repository.Data
             query = query.AsNoTracking().OrderBy(student => student.StudentID);
 
             return query.ToArray();
+        }
+
+        public async Task<PageList<Student>> GetAllStudentsAsync(PageParams pagePagams, 
+                                                                 bool includeTeacher = false)
+        {
+            IQueryable<Student> query = _context.Students;
+
+            if (includeTeacher)
+                query = query.Include(student => student.StudentSubjects)
+                             .ThenInclude(studentSubject => studentSubject.Subject)
+                             .ThenInclude(subject => subject.Teacher);
+
+            query = query.AsNoTracking().OrderBy(student => student.StudentID);
+
+            if (!string.IsNullOrEmpty(pagePagams.Name))
+                query = query.Where(student => student.Name
+                                                       .ToUpper()
+                                                       .Contains(pagePagams.Name.ToUpper()) ||
+                                               student.LastName
+                                                       .ToUpper().Contains(pagePagams.Name.ToUpper()));
+
+            if (pagePagams.Enrolment > 0)
+                query = query.Where(student => student.Enrolment == pagePagams.Enrolment);
+
+            if(pagePagams.Active != null)
+                query = query.Where(student => student.Active == (pagePagams.Active != 0));
+
+            //return await query.ToListAsync();
+            return await PageList<Student>.CreateAsync(query, pagePagams.PageNumber, pagePagams.PageSize);
         }
 
         public Student[] GetAllStudentsBySubject(int subjectId, bool includeTeacher = false)
